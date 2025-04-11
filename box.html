@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك الأسئلة التعليمي</title>
+    <link rel="stylesheet" href="box.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="index.html" class="logo">بنك <span>الأسئلة</span></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="library.html">المكتبة</a></li>
+                    <li><a href="box.html">بنك الأسئلة</a></li>
+                
+                    <li><a href="index.html#about">عن المنصة</a></li>
+                    <li><a href="call.html">اتصل بنا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>بنك الأسئلة التعليمي</h1>
+            <p>منصة متكاملة لتحسين جودة التعليم والتعلم</p>
+        </div>
+    </section>
+
+    <!-- قسم اختيار المرحلة والمادة -->
+    <section class="selection-section">
+        <div class="container">
+            <h2 class="section-title">اختر المرحلة والمادة</h2>
+            <div class="selection-form">
+                <div class="form-group">
+                    <label for="grade">المرحلة الدراسية:</label>
+                    <select id="grade" class="form-control">
+                        <option value="">-- اختر المرحلة --</option>
+                        <option value="third-intermediate">الثالث متوسط</option>
+                        <option value="class4"> الرابع علمي </option>
+                        <option value="class5"> الخامس علمي</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">المادة الدراسية:</label>
+                    <select id="subject" class="form-control" disabled>
+                        <option value="">-- اختر المادة --</option>
+                    </select>
+                </div>
+                
+                <button id="show-questions" class="btn" disabled>عرض الأسئلة</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم عرض الأسئلة -->
+    <section id="questions-section" class="questions-section" style="display: none;">
+        <div class="container">
+            <h2 id="section-title" class="section-title"></h2>
+            <div id="questions-container" class="questions-container">
+                <!-- سيتم عرض الأسئلة هنا عبر الجافاسكريبت -->
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم إرشادات الاستخدام -->
+    <section class="guide-section">
+        <div class="container">
+            <h2 class="section-title">إرشادات استخدام بنك الأسئلة</h2>
+            <div class="guide-content">
+                <div class="guide-text">
+                    <h3><i class="fas fa-lightbulb"></i> كيفية الاستفادة من المنصة</h3>
+                    <ul>
+                        <li>اختر المرحلة والمادة الدراسية لعرض الأسئلة المتاحة</li>
+                        <li>يمكنك تحميل الأسئلة بصيغة PDF بضغطة واحدة</li>
+                        <li>استخدم الأسئلة لتقييم الطلاب أو كتمارين إضافية</li>
+                        <li>شارك الزملاء بالأسئلة المفيدة</li>
+                    </ul>
+                </div>
+                <div class="guide-image">
+                    <img src="Screenshot_61.png" alt="إرشادات استخدام المنصة">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الإحصائيات -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title">أرقام حول المنصة</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">سؤال تعليمي</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">200+</span>
+                    <span class="stat-label">عدد الطلاب المستفيدين</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">مواد دراسية</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">4</span>
+                    <span class="stat-label">مراحل تعليمية</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>عن بنك الأسئلة</h3>
+                    <p>منصة تعليمية تهدف إلى تحسين جودة التعليم من خلال توفير موارد تعليمية متكاملة للمعلمين والطلاب.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/@GiftedSchoolNajaf/"><i class="fab fa-facebook-f"></i></a>
+
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="box.html">بنك الأسئلة</a></li>
+                        <li><a href="">دليل المعلمين</a></li>
+                    
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>اتصل بنا</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-envelope"></i> axioreripindra@gmail.com</li>
+                        <li><i class="fas fa-phone"></i> 07801234567 - 07709876543 </li>
+                        <li><i class="fas fa-map-marker-alt"></i> حي السلام , النجف الاشرف و العراق</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 بنك الأسئلة التعليمي. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // بيانات الأسئلة
+        const questionsData = {
+            class4: {
+    physics: [
+        { name: "اسئلة الفيزياء الشهرية ونصف السنة", file: "https://drive.google.com/file/d/17gH6wv9hGVo7NTSdj65xIUjD-pTylYac/view?usp=sharing" }
+    ],
+    chemistry: [
+        { name: "اسئلة الكيمياء الشهرية ونصف السنة", file: "https://drive.google.com/file/d/1ujJDXaC63KJMO_r2X7PcMDdwjkwRCYDu/view?usp=sharing" }
+    ],
+    biology: [
+        { name: "اسئلة الأحياء الشهرية ونصف السنة", file: "https://drive.google.com/file/d/1A7F9L120NZHfi_iaKS4BcYAZSMcdn-Fb/view?usp=sharing" }
+    ],
+    math: [
+        { name: "اسئلة الرياضيات الشهرية ونصف السنة", file: "https://drive.google.com/file/d/13x5FqhGLrgaBj1gATEK_dCNoVwftmpt7/view?usp=sharing" }
+    ],
+    arabic: [
+        { name: "اسئلة اللغة العربية الشهرية ونصف السنة", file: "https://drive.google.com/file/d/1rFKCA2sVq81ecG18ICm2gpVlRVryYQgk/view?usp=sharing" }
+    ]
+},
+class5: {
+    physics: [
+        { name: "اسئلة الفيزياء الشهرية ونصف السنة", file: "https://drive.google.com/file/d/1ydH6aC2xOYzKOpgDTMc3l3JX8uUUG9kV/view?usp=sharing" }
+    ],
+    chemistry: [
+        { name: "اسئلة الكيمياء الشهرية ونصف السنة", file: "https://drive.google.com/file/d/10CwWf-L-bDMAkF5cNHbZsUkYTSWuZrfp/view?usp=sharing" }
+    ],
+    biology: [
+        { name: "اسئلة الأحياء الشهرية ونصف السنة", file: "https://drive.google.com/file/d/1FFav9aWJmpKoDTbYtrCI9UEgMoCgOnQ9/view?usp=sharing" }
+    ],
+    math: [
+        { name: "اسئلة الرياضيات الشهرية ونصف السنة", file: "https://drive.google.com/file/d/151IgWWLaz--TVjGoVzUb1kepiL1guYBi/view?usp=sharing" }
+    ],
+    arabic: [
+        { name: "اسئلة اللغة العربية الشهرية ونصف السنة", file: "https://drive.google.com/file/d/1A76SdEey7bXVEH0Ipw15gi6anGWZ4FKQ/view?usp=sharing" }
+    ]
+            },
+            "third-intermediate": {
+        physics: [
+            { name: "اسئلة الفيزياء الشهرية ونصف السنة", file: "https://drive.google.com/file/d/1ex3zA901IXn30djPzP4aCAPu0MzwqgyE/view?usp=sharing" },
+            { name: "اسئلة الفيزياء الوزاري", file: "https://drive.google.com/file/d/1-X9FgmuHCxzqaaZpITwrihldPXCBqR9v/view?usp=sharing" } 
+        ],
+        chemistry: [
+            { name: "اسئلة الكيمياء الشهرية ونصف السنة", file: "https://drive.google.com/file/d/12F5WlPdB3SVxzAVKNd1WvAjFX9KFkA55/view?usp=sharing" },
+            { name: "اسئلة الكيمياء الوزاري", file: "https://drive.google.com/file/d/1vWqMcWBnhQ9dkC_3cyLCsF_xvsSswKCV/view?usp=sharing" }
+        ],
+        biology: [
+            { name: "اسئلة الأحياء الشهرية ونصف السنة", file: "https://drive.google.com/file/d/1U91mdyNP7l3pCHmbmwqE7xGkzdPq8lT2/view?usp=sharing" },
+            { name: "اسئلة الأحياء الوزاري", file: "https://drive.google.com/file/d/1PxFHChd67SksBeKRVWr2rYn9v1qaJviv/view?usp=sharing" }
+        ],
+        math: [
+            { name: "اسئلة الرياضيات الشهرية ونصف السنة", file: "https://drive.google.com/file/d/1m99M3Z-GZXshN64vmZ3AsZsVynkp_WQA/view?usp=sharing" },
+            { name: "اسئلة الرياضيات الوزاري", file: "https://drive.google.com/file/d/1FN2PdaA5oZU9V45fhUBUnjXXXYhYJIfR/view?usp=sharing" }
+        ],
+        arabic: [
+            { name: "اسئلة اللغة العربية الشهرية ونصف السنة", file: "https://drive.google.com/file/d/1TSbcIZ9EoR-1cZyDrOyRboXwONbfyYPd/view?usp=sharing" },
+            { name: "اسئلة اللغة العربية الوزاري", file: "https://drive.google.com/file/d/1mCd8LleTarPnSaYI5aW-d9B9gelCLwDg/view?usp=sharing" }
+        ]
+    }
+};
+        // المواد المتاحة لكل مرحلة
+        const subjectsByGrade = {
+            class4: ["physics", "chemistry", "biology", "math", "arabic"],
+            class5: ["physics", "chemistry", "biology", "math", "arabic"],
+            class7: ["physics", "chemistry", "biology", "math", "arabic"],
+            "third-intermediate": ["physics", "chemistry", "biology", "math", "arabic"]
+        };
+
+        // عناصر DOM
+        const gradeSelect = document.getElementById('grade');
+        const subjectSelect = document.getElementById('subject');
+        const showQuestionsBtn = document.getElementById('show-questions');
+        const questionsSection = document.getElementById('questions-section');
+        const sectionTitle = document.getElementById('section-title');
+        const questionsContainer = document.getElementById('questions-container');
+
+        // تغيير المرحلة
+        gradeSelect.addEventListener('change', function() {
+            const selectedGrade = this.value;
+            
+            if (selectedGrade) {
+                // تفعيل اختيار المادة
+                subjectSelect.disabled = false;
+                
+                // تعبئة المواد المتاحة
+                subjectSelect.innerHTML = '<option value="">-- اختر المادة --</option>';
+                
+                const subjects = subjectsByGrade[selectedGrade];
+                subjects.forEach(subject => {
+                    let subjectName;
+                    switch(subject) {
+                        case 'physics': subjectName = 'الفيزياء'; break;
+                        case 'chemistry': subjectName = 'الكيمياء'; break;
+                        case 'biology': subjectName = 'الأحياء'; break;
+                        case 'math': subjectName = 'الرياضيات'; break;
+                        case 'arabic': subjectName = 'اللغة العربية'; break;
+                        default: subjectName = subject;
+                    }
+                    
+                    const option = document.createElement('option');
+                    option.value = subject;
+                    option.textContent = subjectName;
+                    subjectSelect.appendChild(option);
+                });
+                
+                // تعطيل زر عرض الأسئلة حتى يتم اختيار المادة
+                showQuestionsBtn.disabled = true;
+            } else {
+                // تعطيل كل شيء إذا لم يتم اختيار مرحلة
+                subjectSelect.disabled = true;
+                showQuestionsBtn.disabled = true;
+                subjectSelect.innerHTML = '<option value="">-- اختر المادة --</option>';
+            }
+        });
+
+        // تغيير المادة
+        subjectSelect.addEventListener('change', function() {
+            showQuestionsBtn.disabled = !this.value;
+        });
+
+        // عرض الأسئلة
+        showQuestionsBtn.addEventListener('click', function() {
+            const grade = gradeSelect.value;
+            const subject = subjectSelect.value;
+            
+            if (grade && subject) {
+                // تحديث عنوان القسم
+                let gradeName, subjectName;
+                
+                switch(grade) {
+                    case 'class4': gradeName = 'الصف الرابع'; break;
+                    case 'class5': gradeName = 'الصف الخامس'; break;
+                    case 'class7': gradeName = 'الصف السابع'; break;
+                    case 'third-intermediate': gradeName = 'ثالث متوسط'; break;
+                }
+                
+                switch(subject) {
+                    case 'physics': subjectName = 'الفيزياء'; break;
+                    case 'chemistry': subjectName = 'الكيمياء'; break;
+                    case 'biology': subjectName = 'الأحياء'; break;
+                    case 'math': subjectName = 'الرياضيات'; break;
+                    case 'arabic': subjectName = 'اللغة العربية'; break;
+                }
+                
+                sectionTitle.textContent = `أسئلة ${subjectName} ل${gradeName}`;
+                
+                // عرض الأسئلة
+                questionsContainer.innerHTML = '';
+                
+                const questions = questionsData[grade][subject];
+                if (questions && questions.length > 0) {
+                    questions.forEach(question => {
+                        const questionElement = document.createElement('div');
+                        questionElement.className = 'question-item';
+                        questionElement.innerHTML = `
+                            <a href="${question.file}" class="question-link">
+                                <span>${question.name}</span>
+                                <i class="fas fa-download"></i>
+                            </a>
+                        `;
+                        questionsContainer.appendChild(questionElement);
+                    });
+                } else {
+                    questionsContainer.innerHTML = '<p class="no-questions">لا توجد أسئلة متاحة لهذه المادة حالياً</p>';
+                }
+                
+                // إظهار قسم الأسئلة
+                questionsSection.style.display = 'block';
+                
+                // التمرير إلى قسم الأسئلة
+                questionsSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+        window.addEventListener('load', function() {
+    gradeSelect.selectedIndex = 0;
+    subjectSelect.innerHTML = '<option value="">-- اختر المادة --</option>';
+    subjectSelect.disabled = true;
+    showQuestionsBtn.disabled = true;
+    questionsSection.style.display = 'none';
+});
+    </script>
+</body>
+</html>
