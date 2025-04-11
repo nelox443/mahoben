@@ -1,0 +1,137 @@
+/* أنماط قسم عن المنصة */
+.about-platform {
+    background-color: #f9f9f9;
+}
+
+.features-container {
+    margin-top: 2rem;
+}
+
+.features-section {
+    margin-bottom: 3rem;
+}
+
+.features-title {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    padding-right: 1.5rem;
+    position: relative;
+    font-size: 1.5rem;
+}
+
+.features-title i {
+    margin-left: 0.5rem;
+    color: var(--secondary);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.feature-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    border-top: 4px solid var(--secondary);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.dev-card {
+    border-top: 4px solid #f39c12;
+    opacity: 0.9;
+}
+
+.dev-card:hover {
+    opacity: 1;
+}
+
+.feature-icon {
+    font-size: 2rem;
+    color: var(--secondary);
+    margin-bottom: 1rem;
+}
+
+.dev-card .feature-icon {
+    color: #f39c12;
+}
+
+.feature-card h4 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.feature-list {
+    list-style: none;
+    padding-right: 1rem;
+}
+
+.feature-list li {
+    margin-bottom: 0.7rem;
+    position: relative;
+    padding-right: 1.5rem;
+}
+
+.feature-list i {
+    color: var(--secondary);
+    margin-left: 0.5rem;
+    width: 1.2rem;
+    text-align: center;
+}
+
+.dev-card .feature-list i {
+    color: #f39c12;
+}
+
+.dev-badge {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    background-color: #f39c12;
+    color: white;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.dev-notice {
+    background-color: #fff8e1;
+    padding: 1rem;
+    border-right: 4px solid #f39c12;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.dev-notice i {
+    color: #f39c12;
+    font-size: 1.5rem;
+    margin-left: 1rem;
+}
+
+.dev-notice p {
+    margin-bottom: 0;
+    color: #555;
+}
+
+@media (max-width: 768px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .feature-card {
+        padding: 1.2rem;
+    }
+}

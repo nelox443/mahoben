@@ -1,30 +1,641 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مكتبة منصة الموهوبين في النجف</title>
+    <title>منصة موهوبي النجف</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="lib.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="load.css">
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
 
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* الشريط العلوي */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        /* القائمة */
+        nav ul {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: var(--secondary);
+        }
+
+        /* قسم البطل */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            margin-bottom: -5rem;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: #f5f5f5;
+            clip-path: polygon(0 90%, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        /* الأقسام */
+        .section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        .section-title p {
+            color: #666;
+            margin-top: 1rem;
+        }
+
+        /* مميزات المنصة */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            text-align: center;
+            border-top: 4px solid var(--secondary);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* المكتبة */
+        .books {
+            background-color: var(--light);
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .book-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .book-img {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .book-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .book-card:hover .book-img img {
+            transform: scale(1.05);
+        }
+
+        .book-info {
+            padding: 1.5rem;
+        }
+
+        .book-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .book-info .author {
+            color: #7f8c8d;
+            margin-bottom: 1.5rem;
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        /* بنك الأسئلة */
+        .questions {
+            background-color: white;
+        }
+
+        .question-categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-btn {
+            padding: 0.6rem 1.5rem;
+            background-color: var(--light);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .category-btn.active, .category-btn:hover {
+            background-color: var(--secondary);
+            color: white;
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+        }
+
+        .questions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .question-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .question-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .question-card .level {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .question-card h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        /* دليل المعلمين */
+        .teachers-guide {
+            background-color: var(--light);
+        }
+
+        .guide-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .guide-card {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .guide-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .guide-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .guide-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        /* قسم عن المنصة */
+        .about-platform {
+            background-color: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .about-features {
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-icon-sm {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin-left: 1rem;
+            margin-top: 0.3rem;
+        }
+
+        .feature-text h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* الأزرار */
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            font-size: 1rem;
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.2);
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        /* الفوتر */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 0 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+            transform: translateX(-5px);
+        }
+
+        .footer-column p {
+            color: #bdc3c7;
+            line-height: 1.7;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 2rem;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            .hero {
+                padding: 5rem 0;
+                margin-bottom: -3rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                order: -1;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 4rem 0;
+            }
+            
+            .books-grid, .questions-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 4rem 0;
+                clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+            }
+            
+            .hero::after {
+                height: 50px;
+                clip-path: polygon(0 95%, 100% 0, 100% 100%, 0% 100%);
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    
+</head>
+  </div>
 <body>
     <!-- الشريط العلوي -->
     <header>
         <div class="container header-content">
-            <a href="index.html" class="logo">منصة <span>الموهوبين في النجف</span></a>
+            <a href="#" class="logo">منصة <span>الموهوبين</span></a>
             <nav>
                 <ul>
-                    <li><a href="index.html">الرئيسية</a></li>
-                    <li><a href="#first-intermediate">أول متوسط</a></li>
-                    <li><a href="#second-intermediate">ثاني متوسط</a></li>
-                    <li><a href="#third-intermediate">ثالث متوسط</a></li>
-                    <li><a href="#fourth-scientific">رابع علمي</a></li>
-                    <li><a href="#fifth-scientific">خامس علمي</a></li>
-                    <li><a href="#sixth-scientific">سادس علمي</a></li>
-                    <li><a href="box.html">أسئلة شهرية</a></li>
-                    <li><a href="box.html">أسئلة وزاري</a></li>
+                    <li><a href="#">الرئيسية</a></li>
+                    <li><a href="#library">المكتبة</a></li>
+                    <li><a href="#questions">بنك الأسئلة</a></li>
+                    <li><a href="#teachers">دليل المعلمين</a></li>
+                    <li><a href="#about">عن المنصة</a></li>
+                    <li><a href="call.html">اتصل بنا</a></li>
                 </ul>
             </nav>
         </div>
@@ -33,535 +644,216 @@
     <!-- قسم البطل -->
     <section class="hero">
         <div class="container">
-            <h1>مكتبة منصة الموهوبين في النجف</h1>
-            <p>جميع الكتب الدراسية والمراجع العلمية لجميع المراحل والمواد</p>
+            <h1>منصة الموهوبين في النجف - اكتشف موهبتك وطور إمكانياتك</h1>
+            <p>بيئة تعليمية متكاملة مصممة خصيصًا للطلاب الموهوبين`</p>
+            <a href="#library" class="btn">استكشف المنصة</a>
         </div>
     </section>
 
-    <!-- أول متوسط -->
-    <section id="first-intermediate" class="section books">
+    <!-- مميزات المنصة -->
+    <section class="section">
         <div class="container">
             <div class="section-title">
-                <h2>أول متوسط</h2>
-                <p>جميع مواد الصف الأول متوسط</p>
+                <h2>مميزات المنصة</h2>
+                <p>نقدم لكم أفضل الأدوات والموارد التعليمية</p>
+            </div>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>مكتبة متخصصة</h3>
+                    <p>الكتب الخاصة بجميع المراحل الدراسية</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h3>بنك الأسئلة</h3>
+                    <p>الاسئلة الشهرية والنصفية والوزارية الخاصة بالمراحل</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>دليل المعلمين</h3>
+                    <p>... قريبا </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <canvas id="container" width="200" height="200"></canvas>
+    <!-- المكتبة -->
+    <section id="library" class="section books">
+        <div class="container">
+            <div class="section-title">
+                <h2>المكتبة العلمية</h2>
+                <p> الكتب والمراجع لجميع المراحل الدراسية</p>
             </div>
             <div class="books-grid">
-                <!-- فيزياء -->
                 <div class="book-card">
                     <div class="book-img">
-                        <img src="360_F_214567514_hGbTMUq06pJIGKiXA248l43E3hU9Q08x.jpg" alt="فيزياء أول متوسط">
+                        <img src="360_F_94463900_kTSd8CtbmIYRuNrbWS7WxCpLDTizVuq5.jpg" alt="كتاب كيمياء">
                     </div>
                     <div class="book-info">
-                        <h3>الفيزياء - أول متوسط</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="#" class="btn">تحميل الكتاب</a>
+                        <h3>الكيمياء </h3>
+                        <span class="author">لطلاب المرحلة الإعدادية والعلمي</span>
+                        <a href="#" class="btn">عرض الكتاب</a>
                     </div>
                 </div>
-                
-                <!-- أحياء -->
                 <div class="book-card">
                     <div class="book-img">
-                        <img src="human-cell-biology-dna-strands-molecular-structure-illustration-generate-ai-free-photo.jpg" alt="أحياء أول متوسط">
+                        <img src="human-cell-biology-dna-strands-molecular-structure-illustration-generate-ai-free-photo.jpg" alt="كتاب أحياء">
                     </div>
                     <div class="book-info">
-                        <h3>الأحياء - أول متوسط</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="#" class="btn">تحميل الكتاب</a>
+                        <h3>الأحياء </h3>
+                        <span class="author">لطلاب المرحلة الإعدادية والعلمي</span>
+                        <a href="#" class="btn">عرض الكتاب</a>
                     </div>
                 </div>
-                
-                <!-- كيمياء -->
                 <div class="book-card">
                     <div class="book-img">
-                        <img src="360_F_94463900_kTSd8CtbmIYRuNrbWS7WxCpLDTizVuq5.jpg" alt="كيمياء أول متوسط">
+                        <img src="360_F_214567514_hGbTMUq06pJIGKiXA248l43E3hU9Q08x.jpg" alt="كتاب فيزياء">
                     </div>
                     <div class="book-info">
-                        <h3>الكيمياء - أول متوسط</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="#" class="btn">تحميل الكتاب</a>
+                        <h3>الفيزياء </h3>
+                        <span class="author">لطلاب المرحلة الإعدادية والعلمي</span>
+                        <a href="#" class="btn">عرض الكتاب</a>
                     </div>
                 </div>
-                
-                <!-- عربي -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="Arabic-language-teaching.jpg" alt="عربي أول متوسط">
-                    </div>
-                    <div class="book-info">
-                        <h3>اللغة العربية - أول متوسط</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="#" class="btn">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- اسلامية -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="channels4_profile (1).jpg" alt="إسلامية أول متوسط">
-                    </div>
-                    <div class="book-info">
-                        <h3>التربية الإسلامية - أول متوسط</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="#" class="btn">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- انكليزي -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="english-f8vjihyp7sdzendc.jpg" alt="انكليزي أول متوسط">
-                    </div>
-                    <div class="book-info">
-                        <h3>اللغة الإنجليزية - أول متوسط</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="#" class="btn">تحميل الكتاب</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ثاني متوسط -->
-    <section id="second-intermediate" class="section books">
-        <div class="container">
-            <div class="section-title">
-                <h2>ثاني متوسط</h2>
-                <p>جميع مواد الصف الثاني متوسط</p>
-            </div>
-            <div class="books-grid">
-                <!-- فيزياء -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="360_F_214567514_hGbTMUq06pJIGKiXA248l43E3hU9Q08x.jpg"فيزياء ثاني متوسط">
-                    </div>
-                    <div class="book-info">
-                        <h3>الفيزياء - ثاني متوسط</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="#" class="btn">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- أحياء -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="human-cell-biology-dna-strands-molecular-structure-illustration-generate-ai-free-photo.jpg" alt="أحياء ثاني متوسط">
-                    </div>
-                    <div class="book-info">
-                        <h3>الأحياء - ثاني متوسط</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="#" class="btn">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- كيمياء -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="360_F_94463900_kTSd8CtbmIYRuNrbWS7WxCpLDTizVuq5.jpg" alt="كيمياء ثاني متوسط">
-                    </div>
-                    <div class="book-info">
-                        <h3>الكيمياء - ثاني متوسط</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="#" class="btn">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- عربي -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="Arabic-language-teaching.jpg" alt="عربي ثاني متوسط">
-                    </div>
-                    <div class="book-info">
-                        <h3>اللغة العربية - ثاني متوسط</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="#" class="btn">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- اسلامية -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="channels4_profile (1).jpg" alt="إسلامية ثاني متوسط">
-                    </div>
-                    <div class="book-info">
-                        <h3>التربية الإسلامية - ثاني متوسط</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="#" class="btn">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- انكليزي -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="english-f8vjihyp7sdzendc.jpg" alt="انكليزي ثاني متوسط">
-                    </div>
-                    <div class="book-info">
-                        <h3>اللغة الإنجليزية - ثاني متوسط</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="#" class="btn">تحميل الكتاب</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ثالث متوسط -->
-    <section id="third-intermediate" class="section books">
-        <div class="container">
-            <div class="section-title">
-                <h2>ثالث متوسط</h2>
-                <p>جميع مواد الصف الثالث متوسط</p>
-            </div>
-            <div class="books-grid">
-                <!-- فيزياء -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="360_F_214567514_hGbTMUq06pJIGKiXA248l43E3hU9Q08x.jpg" alt="فيزياء ثالث متوسط">
-                    </div>
-                    <div class="book-info">
-                        <h3>الفيزياء - ثالث متوسط</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="https://drive.google.com/file/d/12Vkud_4CyxSNKljvgdcKHJB7KMxMH5rE/view?usp=drive_link" class="btn" download="">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- أحياء -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="human-cell-biology-dna-strands-molecular-structure-illustration-generate-ai-free-photo.jpg" alt="أحياء ثالث متوسط">
-                    </div>
-                    <div class="book-info">
-                        <h3>الأحياء - ثالث متوسط</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="https://drive.google.com/file/d/1k3f156Dn-2Xs7LY343NyfULtXbuFYWJH/view?usp=drive_link" class="btn" download="">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- كيمياء -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="360_F_94463900_kTSd8CtbmIYRuNrbWS7WxCpLDTizVuq5.jpg"كيمياء ثالث متوسط">
-                    </div>
-                    <div class="book-info">
-                        <h3>الكيمياء - ثالث متوسط</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="https://drive.google.com/file/d/1uPe6C81KC6WrPIA3wFXhGoZn0A-sl0vG/view?usp=drive_link" class="btn" download="">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- عربي -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="Arabic-language-teaching.jpg" alt="عربي ثالث متوسط">
-                    </div>
-                    <div class="book-info">
-                        <h3>اللغة العربية - ثالث متوسط</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="https://drive.google.com/file/d/1k96eXA1XOFqN8WxtoxH-mPYb1iR3cftW/view?usp=drive_link" class="btn" download="">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- اسلامية -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="channels4_profile (1).jpg" alt="إسلامية ثالث متوسط">
-                    </div>
-                    <div class="book-info">
-                        <h3>التربية الإسلامية - ثالث متوسط</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="https://drive.google.com/file/d/1SyQu71uXvhS1LyZBF28Zk91u3GkDdfeh/view?usp=drive_link" class="btn" download="">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- انكليزي -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="english-f8vjihyp7sdzendc.jpg" alt="انكليزي ثالث متوسط">
-                    </div>
-                    <div class="book-info">
-                        <h3>اللغة الإنجليزية - ثالث متوسط</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="https://drive.google.com/file/d/1fadGP2E4fLr3YQNHDpmHtFsCaIrlszPd/view?usp=drive_link" class="btn" download="">تحميل الكتاب</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- رابع علمي -->
-    <section id="fourth-scientific" class="section books">
-        <div class="container">
-            <div class="section-title">
-                <h2>رابع علمي</h2>
-                <p>جميع مواد الصف الرابع العلمي</p>
-            </div>
-            <div class="books-grid">
-                <!-- فيزياء -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="360_F_214567514_hGbTMUq06pJIGKiXA248l43E3hU9Q08x.jpg" alt="فيزياء رابع علمي">
-                    </div>
-                    <div class="book-info">
-                        <h3>الفيزياء - رابع علمي</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="https://drive.google.com/file/d/1UOwgti6TNnSON690ZP1n9fZOodSoppV6/view?usp=drive_link" class="btn" download="">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- أحياء -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="human-cell-biology-dna-strands-molecular-structure-illustration-generate-ai-free-photo.jpg" alt="أحياء رابع علمي">
-                    </div>
-                    <div class="book-info">
-                        <h3>الأحياء - رابع علمي</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="pdfs4/_⁨منهج الرابع العلمي 2024-1⁩ (2).pdf" download="" class="btn">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- كيمياء -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="360_F_94463900_kTSd8CtbmIYRuNrbWS7WxCpLDTizVuq5.jpg" alt="كيمياء رابع علمي">
-                    </div>
-                    <div class="book-info">
-                        <h3>الكيمياء - رابع علمي</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="pdfs4/4th Grade Chemistry.pdf" class="btn" download="">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- عربي -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="Arabic-language-teaching.jpg" alt="عربي رابع علمي">
-                    </div>
-                    <div class="book-info">
-                        <h3>اللغة العربية - رابع علمي</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="pdfs4/_⁨كتاب_العربي_الرابع_الاعدادي_الجزء_الاول⁩.pdf" download="" class="btn">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- اسلامية -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="channels4_profile (1).jpg" alt="إسلامية رابع علمي">
-                    </div>
-                    <div class="book-info">
-                        <h3>التربية الإسلامية - رابع علمي</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="pdfs4/كتاب الاسلامية الرابع الاعدادي.pdf" class="btn" download="">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- انكليزي -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="english-f8vjihyp7sdzendc.jpg" alt="انكليزي رابع علمي">
-                    </div>
-                    <div class="book-info">
-                        <h3>اللغة الإنجليزية - رابع علمي</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="https://drive.google.com/file/d/1nDXxn0UmiCcPcbEuQkEXNXZSDtF4RdT_/view?usp=drive_link" class="btn" download="">تحميل الكتاب</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- خامس علمي -->
-    <section id="fifth-scientific" class="section books">
-        <div class="container">
-            <div class="section-title">
-                <h2>خامس علمي</h2>
-                <p>جميع مواد الصف الخامس العلمي</p>
-            </div>
-            <div class="books-grid">
-                <!-- فيزياء -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="360_F_214567514_hGbTMUq06pJIGKiXA248l43E3hU9Q08x.jpg" alt="فيزياء خامس علمي">
-                    </div>
-                    <div class="book-info">
-                        <h3>الفيزياء - خامس علمي</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="https://drive.google.com/file/d/1qNjKe7Y03ih6Pi15tlS_rQhb6bsXXura/view?usp=drive_link" class="btn" download="">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- أحياء -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="human-cell-biology-dna-strands-molecular-structure-illustration-generate-ai-free-photo.jpg" alt="أحياء خامس علمي">
-                    </div>
-                    <div class="book-info">
-                        <h3>الأحياء - خامس علمي</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="pdfs5/5th Class enrichment rev2.pdf" class="btn" download="">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- كيمياء -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="360_F_94463900_kTSd8CtbmIYRuNrbWS7WxCpLDTizVuq5.jpg" alt="كيمياء خامس علمي">
-                    </div>
-                    <div class="book-info">
-                        <h3>الكيمياء - خامس علمي</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="https://drive.google.com/file/d/1DzggS2HlsbAhLqRk7PUY88sq0g7h9x3W/view?usp=drive_link" download="" class="btn">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- عربي -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="Arabic-language-teaching.jpg" alt="عربي خامس علمي">
-                    </div>
-                    <div class="book-info">
-                        <h3>اللغة العربية - خامس علمي</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="pdfs5/كتاب_عربي_خامس_علمي_ج1_قناة_الاستاذ_العراقي_تليكرام.pdf"  download="btn">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- اسلامية -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="channels4_profile (1).jpg" alt="إسلامية خامس علمي">
-                    </div>
-                    <div class="book-info">
-                        <h3>التربية الإسلامية - خامس علمي</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="pdfs5/كتاب_اسلامية_خامس_علمي_قناة_الاستاذ_العراقي_تليكرام.pdf"  download="btn">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- انكليزي -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="english-f8vjihyp7sdzendc.jpg" alt="انكليزي خامس علمي">
-                    </div>
-                    <div class="book-info">
-                        <h3>اللغة الإنجليزية - خامس علمي</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="https://drive.google.com/file/d/11x72aOELvduRKXIbz0LNKuTGVUJk5Lh9/view?usp=drive_link" download="" class="btn">تحميل الكتاب</a>
-                    </div> 
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- سادس علمي -->
-    <section id="sixth-scientific" class="section books">
-        <div class="container">
-            <div class="section-title">
-                <h2>سادس علمي</h2>
-                <p>جميع مواد الصف السادس العلمي</p>
-            </div>
-            <div class="books-grid">
-                <!-- فيزياء -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="360_F_214567514_hGbTMUq06pJIGKiXA248l43E3hU9Q08x.jpg" alt="فيزياء سادس علمي">
-                    </div>
-                    <div class="book-info">
-                        <h3>الفيزياء - سادس علمي</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="#" class="btn">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- أحياء -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="human-cell-biology-dna-strands-molecular-structure-illustration-generate-ai-free-photo.jpg" alt="أحياء سادس علمي">
-                    </div>
-                    <div class="book-info">
-                        <h3>الأحياء - سادس علمي</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="#" class="btn">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- كيمياء -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="360_F_94463900_kTSd8CtbmIYRuNrbWS7WxCpLDTizVuq5.jpg" alt="كيمياء سادس علمي">
-                    </div>
-                    <div class="book-info">
-                        <h3>الكيمياء - سادس علمي</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="#" class="btn">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- عربي -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="Arabic-language-teaching.jpg" alt="عربي سادس علمي">
-                    </div>
-                    <div class="book-info">
-                        <h3>اللغة العربية - سادس علمي</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="#" class="btn">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- اسلامية -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="channels4_profile (1).jpg" alt="إسلامية سادس علمي">
-                    </div>
-                    <div class="book-info">
-                        <h3>التربية الإسلامية - سادس علمي</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="#" class="btn">تحميل الكتاب</a>
-                    </div>
-                </div>
-                
-                <!-- انكليزي -->
-                <div class="book-card">
-                    <div class="book-img">
-                        <img src="english-f8vjihyp7sdzendc.jpg" alt="انكليزي سادس علمي">
-                    </div>
-                    <div class="book-info">
-                        <h3>اللغة الإنجليزية - سادس علمي</h3>
-                        <span class="author">وزارة التربية</span>
-                        <a href="#" class="btn">تحميل الكتاب</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- أسئلة شهرية ونصف السنة -->
-    <section id="monthly-exams" class="section questions">
-        <div class="container">
-            <div class="section-title">
-                <h2>أسئلة شهرية ونصف السنة</h2>
-                <p>نماذج أسئلة الاختبارات الشهرية ونصف السنة للثالث والرابع والخامس </p><br>
-
-            <div class="question-categories">
-              
-       
-               
-                <button class="category-btn">ثالث متوسط</button>
-                <button class="category-btn">رابع علمي</button>
-                <button class="category-btn">خامس علمي</button>
-          
-            </div>
             </div>
             <div style="text-align: center; margin-top: 2rem;">
-                <a href="box.html" class="btn">عرض المزيد من الأسئلة</a>
+                <a href="library.html" class="btn btn-outline">عرض جميع الكتب</a>
             </div>
         </div>
     </section>
+
+    <!-- بنك الأسئلة -->
+    <section id="questions" class="section questions">
+        <div class="container">
+            <div class="section-title">
+                <h2>بنك الأسئلة</h2>
+                <p>أسئلة متنوعة لجميع المستويات والمواد</p>
+            </div>
+            <div class="question-categories">
+                <button class="category-btn active"> العربي</button>
+                <button class="category-btn">الكيمياء</button>
+                <button class="category-btn">الأحياء</button>
+                <button class="category-btn">الفيزياء</button>
+                <button class="category-btn">الرياضيات</button>
+            </div>
+            <div class="questions-grid">
+                <div class="question-card">
+                    <span class="level">الثالث متوسط - رياضيات</span>
+                    <h3>حل المعادلة: √((x+6)<sup>2</sup>) = x+6</h3>
+                </div>
+                <div class="question-card">
+                    <span class="level">الرابع علمي - أحياء</span>
+                    <h3> What is the difference between good ozone and bad ozone?</h3>
+                </div>
+                <div class="question-card">
+                    <span class="level">الخامس علمي - فيزياء</span>
+                    <h3> Why is it easier to describe speed and acceleration in rotational motion than in linear motion?</h3>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="box.html" class="btn btn-outline">عرض المزيد من الأسئلة</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- دليل المعلمين -->
+    <section id="teachers" class="section teachers-guide">
+        <div class="container">
+            <div class="section-title">
+                <h2>دليل المعلمين</h2>
+                <p>موارد تعليمية متخصصة لتدريس الطلاب الموهوبين</p>
+            </div>
+            <div class="guide-features">
+                <div class="guide-card">
+                    <div class="guide-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>نماذج تدريسية</h3>
+                    <p>نماذج جاهزة لخطط الدروس المعدة خصيصًا للطلاب الموهوبين</p>
+                    <a href="#" class="btn" style="margin-top: 1rem;">... قريبا</a>
+                </div>
+                <div class="guide-card">
+                    <div class="guide-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>دروس مصورة</h3>
+                    <p>فيديوهات توضيحية لاستراتيجيات تدريس الموهوبين</p>
+                    <a href="#" class="btn" style="margin-top: 1rem;">... قريبا</a>
+                </div>
+                <div class="guide-card">
+                    <div class="guide-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>أدوات التقييم</h3>
+                    <p>نماذج تقييم الطلاب الموهوبين ومتابعة تقدمهم</p>
+                    <a href="#" class="btn" style="margin-top: 1rem;">... قريبا</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- عن المنصة -->
+    <section id="about" class="section about-platform">
+        <div class="container">
+            <div class="section-title">
+                <h2>عن المنصة</h2>
+                <p>تعرف على رؤيتنا ورسالتنا وأهدافنا</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>منصة موهوبي النجف - بيئة تعليمية متكاملة</h3>
+                    <p>تأسست منصة موهوبي النجف لدعم الطلاب الموهوبين , حيث توفر بيئة تعليمية متكاملة تساعد الطلاب الموهوبين على الوصول الى المواد التعليمية الخاصة بالمدرسة بشكل كامل .</p>
+                    <p> هدف المنصة هو مساعدة طلابنا وطالباتنا للوصول الى اعلى المراتب والدرجات وتحقيق نتائج مرضية </p>
+                    
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon-sm">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>الرؤية</h4>
+                                <p>أن نكون المصدر الأول للأسئلة والمراجعات لطلاب الموهوبين</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon-sm">
+                                <i class="fas fa-flag"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>الرسالة</h4>
+                                <p>توفير بنك أسئلة سهل الوصول يساعد زملائنا في التحضير للاختبارات</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon-sm">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>الأهداف</h4>
+                                <p> 1- جمع الأسئلة السابقة والمهمة للمواد الدراسية
+<br>
+                             2-    تنظيم الأسئلة بطريقة تسهل المذاكرة
+                                <br>
+                            3-    مساعدة الزملاء على تحسين نتائجهم </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="عن المنصة">
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- الفوتر -->
-    <footer>
+    <footer id="contact">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
@@ -578,20 +870,17 @@
                     <h3>روابط سريعة</h3>
                     <ul>
                         <li><a href="index.html">الرئيسية</a></li>
-                        <li><a href="#first-intermediate">أول متوسط</a></li>
-                        <li><a href="#second-intermediate">ثاني متوسط</a></li>
-                        <li><a href="#third-intermediate">ثالث متوسط</a></li>
-                        <li><a href="#fourth-scientific">رابع علمي</a></li>
-                        <li><a href="#fifth-scientific">خامس علمي</a></li>
-                        <li><a href="#sixth-scientific">سادس علمي</a></li>
+                        <li><a href="library.html">المكتبة</a></li>
+                        <li><a href="box.html">بنك الأسئلة</a></li>
+                        <li><a href="index.html#about">عن المنصة</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>اتصل بنا</h3>
                     <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> النجف، العراق</li>
-                        <li><i class="fas fa-phone"></i>+964 780 123 4567</li>
-                        <li><i class="fas fa-envelope"></i> info@mawhoubi-najaf.edu.iq</li>
+                        <li><i class="fas fa-map-marker-alt" ></i> النجف، العراق</li>
+                        <li><i class="fas fa-phone"></i>07801234567 - 07709876543 </li>
+                        <li><i class="fas fa-envelope"></i> axioreripindra@gmail.com</li>
                     </ul>
                 </div>
             </div>
@@ -624,6 +913,7 @@
                 });
             });
         });
+    
     </script>
 </body>
 </html>
